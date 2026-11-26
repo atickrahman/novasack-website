@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { products, industries, site } from '../data/site';
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Product',
+      name: p.title,
+      description: p.text,
+      image: new URL(p.image, Astro.site).toString(),
+      brand: { '@type': 'Brand', name: site.shortName },
+      manufacturer: { '@type': 'Organization', name: site.name },
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Products"
+  description="PP woven sacks, big bags (FIBC), laminated bags and fertilizer bags with custom sizes and multi-colour printing, manufactured in Chattogram, Bangladesh."
+  image="/images/pp-bags.jpg"
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+
+  <PageHero
+    eyebrow="What we make"
+    title="Products & Solutions"
+    subtitle="Heavy-duty polypropylene packaging, made to your size, strength and print requirements."
+    image="/images/pp-bags.jpg"
+  />
+
+  <section class="section">
+    <div class="container-x space-y-16 md:space-y-24">
+      {products.map((p, i) => (
+        <article id={p.slug} class="grid scroll-mt-24 items-center gap-10 md:grid-cols-2">
+          <img
+            src={p.image}
+            alt={p.title}
+            class:list={['aspect-[4/3] w-full rounded-xl object-cover shadow-md', i % 2 === 1 && 'md:order-2']}
+            loading="lazy"
+          />
+          <div>
+            <p class="text-5xl font-bold text-brand/20">0{i + 1}</p>
+            <h2 class="mt-2 text-3xl">{p.title}</h2>
+            <p class="mt-4 text-lg leading-relaxed text-muted">{p.text}</p>
+            <a href={`/contact?product=${encodeURIComponent(p.title)}#quote`} class="btn btn-navy mt-6">
+              Get a quote for {p.title}
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bg-navy-900 text-white">
+    <div class="container-x grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <p class="eyebrow">Custom printing & finishing</p>
+        <h2 class="mt-4 text-3xl text-white">Every bag carries your brand.</h2>
+        <p class="mt-4 text-lg text-white/75">
+          Multi-colour printing, lamination options and made-to-measure sizes, so every bag carries your brand and
+          meets your exact specification.
+        </p>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {['Multi-colour printing', 'Lamination options', 'Made-to-measure sizes', 'Heavy-load engineering'].map((f) => (
+          <li class="flex items-center gap-3 rounded-lg bg-white/5 p-4">
+            <span class="h-2 w-2 shrink-0 rounded-full bg-brand"></span>{f}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x text-center">
+      <p class="eyebrow justify-center">Industries we serve</p>
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {industries.map((name) => (
+          <div class="rounded-xl border border-gray-200 px-4 py-6 font-semibold text-navy-900">{name}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

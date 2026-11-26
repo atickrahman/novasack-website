@@ -1,0 +1,41 @@
+---
+import { nav, site, products } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy-950 text-white/70">
+  <div class="container-x grid gap-10 py-14 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <img src="/images/logo-light.png" alt={site.name} width="640" height="116" class="h-10 w-auto" loading="lazy" />
+      <p class="mt-5 max-w-sm text-sm leading-relaxed">
+        Manufacturer of polypropylene woven sacks and packaging for agro, fertilizer, cement, chemical, sugar and tea
+        industries. Serving Bangladesh since {site.established}.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Products</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        {products.map((p) => <li><a href={`/products#${p.slug}`} class="hover:text-white">{p.title}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Contact</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href={site.phoneHref} class="hover:text-white">{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`} class="break-all hover:text-white">{site.email}</a></li>
+        <li>{site.address.line1},<br />{site.address.line2}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-3 py-5 text-xs md:flex-row md:items-center md:justify-between">
+      <p>&copy; {year} {site.name}. All rights reserved.</p>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+        {nav.map((item) => <a href={item.href} class="hover:text-white">{item.label}</a>)}
+      </nav>
+    </div>
+  </div>
+</footer>

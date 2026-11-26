@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { capacity, process, machineryCountries } from '../data/site';
+---
+
+<BaseLayout
+  title="Capacity & Production Process"
+  description="200 MT/month tape line, about 2 million meters/month loom capacity and a 6-stage integrated process from tape extrusion to delivery."
+>
+  <PageHero
+    eyebrow="Our strength"
+    title="Capacity & Process"
+    subtitle="Modern machinery and an integrated process give us the scale to deliver on time, every time."
+    image="/images/loom.jpg"
+  />
+
+  <section class="section">
+    <div class="container-x grid gap-6 md:grid-cols-3">
+      {capacity.map((c) => (
+        <div class="card border-t-4 border-t-brand p-8">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{c.label}</p>
+          <p class="mt-4 text-5xl font-bold text-navy-900">{c.value}</p>
+          <p class="mt-2 text-sm uppercase tracking-wider text-brand">{c.unit}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bg-paper">
+    <div class="container-x">
+      <p class="eyebrow">Our production process</p>
+      <h2 class="mt-4 text-3xl md:text-4xl">From tape to delivery, under one roof</h2>
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {process.map((step, i) => (
+          <li class="card relative">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 text-lg font-bold text-white">
+              {i + 1}
+            </span>
+            <h3 class="mt-4 text-xl">{step.title}</h3>
+            <p class="mt-2 text-sm text-muted">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x grid items-center gap-10 md:grid-cols-2">
+      <img src="/images/tape-rolls.jpg" alt="Polypropylene tape rolls ready for weaving" class="aspect-[4/3] w-full rounded-xl object-cover shadow-md" loading="lazy" />
+      <div>
+        <p class="eyebrow">Modern machinery</p>
+        <h2 class="mt-4 text-3xl">Built on proven capital machinery</h2>
+        <p class="mt-4 leading-relaxed text-muted">
+          Our machinery is sourced from renowned manufacturers in four countries, so our products are both highly
+          functional and built on the latest advances in capital machinery.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          {machineryCountries.map((c) => (
+            <span class="rounded-full bg-navy-900 px-4 py-2 text-sm font-medium text-white">{c}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

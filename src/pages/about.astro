@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { founder, values, stats, machineryCountries } from '../data/site';
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn about Nova Sack & Packaging Solution, a polypropylene woven bag manufacturer in Pahartoli, Chattogram, established in 2023 by Munir Hossain."
+>
+  <PageHero
+    eyebrow="Who we are"
+    title="About Nova Sack"
+    subtitle="A Chattogram-based manufacturer of polypropylene woven bags, built on quality, customization and dependable service."
+    image="/images/tape-rolls.jpg"
+  />
+
+  <section class="section">
+    <div class="container-x grid gap-12 md:grid-cols-2">
+      <div>
+        <p class="eyebrow">About the company</p>
+        <h2 class="mt-4 text-3xl">Top-tier packaging, timely and cost-effective.</h2>
+      </div>
+      <div class="space-y-4 leading-relaxed text-muted">
+        <p>
+          Nova Sack & Packaging Solution is a Chattogram-based manufacturer of polypropylene woven bags. Our aim is to
+          provide customers with top-tier products that are both timely and cost-effective, supported by outstanding
+          communication and service.
+        </p>
+        <p>
+          We keep refining our systems and product range and actively explore new opportunities to meet the evolving
+          needs of the market, with one goal: to exceed expectations and set a new benchmark for customer satisfaction.
+        </p>
+      </div>
+    </div>
+
+    <div class="container-x mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {stats.map((s) => (
+        <div class="card text-center">
+          <p class="text-3xl font-bold text-brand">{s.value}</p>
+          <p class="mt-1 text-xs uppercase tracking-wider text-muted">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bg-paper">
+    <div class="container-x grid gap-6 md:grid-cols-2">
+      <div class="card border-t-4 border-t-brand p-8">
+        <p class="eyebrow">What drives us</p>
+        <h2 class="mt-3 text-2xl">Our Mission</h2>
+        <p class="mt-4 leading-relaxed text-muted">
+          To provide customers worldwide with top-tier products that are timely and cost-effective, wherever they are.
+          We build that on outstanding communication and service, and on a continuous cycle of innovation that refines
+          today’s products and explores tomorrow’s opportunities.
+        </p>
+      </div>
+      <div class="card border-t-4 border-t-navy-900 p-8">
+        <p class="eyebrow">Where we are going</p>
+        <h2 class="mt-3 text-2xl">Our Vision</h2>
+        <p class="mt-4 leading-relaxed text-muted">
+          To emerge as a trailblazer in sack and packaging manufacturing, redefining industry standards with
+          premium-quality products while championing environmental sustainability and fulfilling our corporate social
+          responsibilities for generations to come.
+        </p>
+      </div>
+    </div>
+
+    <div class="container-x mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {values.map((v) => (
+        <div class="rounded-xl bg-navy-900 p-6 text-white">
+          <h3 class="text-lg text-white">{v.title}</h3>
+          <p class="mt-1 text-sm text-white/70">{v.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Founder message -->
+  <section class="section" id="founder">
+    <div class="container-x grid gap-12 md:grid-cols-[300px_1fr]">
+      <div>
+        <img src={founder.image} alt={founder.name} class="w-full max-w-xs rounded-xl object-cover shadow-lg" loading="lazy" />
+        <p class="mt-5 text-lg font-semibold text-navy-900">{founder.name}</p>
+        <p class="text-sm uppercase tracking-wider text-brand">{founder.role}</p>
+        <p class="mt-3 text-sm text-muted">
+          Leading Nova Sack since 2023 with a focus on quality, reliability and long-term customer partnerships.
+        </p>
+      </div>
+      <div>
+        <p class="eyebrow">From the founder</p>
+        <h2 class="mt-4 text-3xl">Welcome to Nova Sack</h2>
+        <p class="mt-3 font-serif text-xl italic text-navy-700">“{founder.quote}”</p>
+        <div class="mt-6 space-y-4 leading-relaxed text-muted">
+          {founder.message.map((para) => <p>{para}</p>)}
+        </div>
+        <p class="mt-6 text-sm text-muted">
+          Machinery sourced from: <strong class="text-navy-900">{machineryCountries.join(' · ')}</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

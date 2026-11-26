@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #081428;
+  --color-navy-900: #0e2240;
+  --color-navy-800: #17305a;
+  --color-navy-700: #234176;
+  --color-brand: #c60c23;
+  --color-brand-dark: #8e0a1b;
+  --color-ink: #1f2937;
+  --color-muted: #5b6472;
+  --color-paper: #f5f6f8;
+
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply font-sans text-ink bg-white antialiased; }
+  h1, h2, h3, h4 { @apply text-navy-900 font-semibold tracking-tight; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-6xl px-5 md:px-8; }
+  .section { @apply py-16 md:py-24; }
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand;
+  }
+  .eyebrow::before { content: ""; @apply block h-0.5 w-8 bg-brand; }
+  /* use together: class="btn btn-primary" */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition;
+  }
+  .btn-primary { @apply bg-brand text-white hover:bg-brand-dark; }
+  .btn-outline { @apply border border-white/40 text-white hover:bg-white hover:text-navy-900; }
+  .btn-navy { @apply bg-navy-900 text-white hover:bg-navy-800; }
+  .card { @apply rounded-xl border border-gray-200 bg-white p-6 shadow-sm; }
+  /* diagonal accent used on the profile cover */
+  .diag-accent {
+    background:
+      linear-gradient(135deg, transparent 0 70%, rgb(198 12 35 / .9) 70% 76%, transparent 76%),
+      linear-gradient(135deg, transparent 0 80%, rgb(142 10 27 / .9) 80% 100%);
+  }
+}

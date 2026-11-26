@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, stats, products, industries, clients, founder, values } from '../data/site';
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-navy-900 text-white">
+    <img src="/images/loom.jpg" alt="Circular loom weaving polypropylene fabric" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+    <div class="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/85 to-navy-900/30"></div>
+    <div class="diag-accent absolute inset-0 opacity-70"></div>
+    <div class="container-x relative py-24 md:py-36">
+      <p class="eyebrow">Est. {site.established} · Chattogram, Bangladesh</p>
+      <h1 class="mt-5 max-w-3xl text-4xl leading-tight text-white md:text-6xl">
+        Heavy-duty PP packaging, <span class="text-brand">made to your specification.</span>
+      </h1>
+      <p class="mt-6 max-w-xl font-serif text-xl italic text-white/80">{site.tagline}</p>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/contact#quote" class="btn btn-primary">Request a Quote</a>
+        <a href="/products" class="btn btn-outline">View Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-b border-gray-200 bg-white">
+    <div class="container-x grid grid-cols-2 divide-gray-200 md:grid-cols-4 md:divide-x">
+      {stats.map((s) => (
+        <div class="px-4 py-8 text-center">
+          <p class="text-3xl font-bold text-navy-900 md:text-4xl">{s.value}</p>
+          <p class="mt-1 text-xs font-medium uppercase tracking-wider text-muted">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- About teaser -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 md:grid-cols-2">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2 class="mt-4 text-3xl md:text-4xl">A partnership that goes beyond packaging.</h2>
+        <p class="mt-5 leading-relaxed text-muted">
+          Nova Sack & Packaging Solution is a Chattogram-based manufacturer of polypropylene woven bags. We provide
+          top-tier products that are timely and cost-effective, supported by outstanding communication and service.
+        </p>
+        <p class="mt-4 leading-relaxed text-muted">
+          Our core strength is customization: bags in many shapes and sizes, engineered for heavy loads, and produced on
+          modern machinery sourced from China, India, Korea and Taiwan.
+        </p>
+        <a href="/about" class="btn btn-navy mt-8">More about us</a>
+      </div>
+      <div class="relative">
+        <img src="/images/tape-rolls.jpg" alt="Rolls of polypropylene tape in the factory" class="aspect-[4/3] w-full rounded-xl object-cover shadow-lg" loading="lazy" />
+        <div class="absolute -bottom-6 -left-6 hidden rounded-xl bg-brand p-6 text-white shadow-lg md:block">
+          <p class="text-3xl font-bold">200 MT</p>
+          <p class="text-xs uppercase tracking-wider text-white/85">Tape line / month</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section bg-paper">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow">What we make</p>
+          <h2 class="mt-4 text-3xl md:text-4xl">Products & Solutions</h2>
+        </div>
+        <a href="/products" class="text-sm font-semibold text-brand hover:underline">All products →</a>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((p, i) => (
+          <a href={`/products#${p.slug}`} class="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md">
+            <img src={p.image} alt={p.title} class="aspect-[4/3] w-full object-cover transition group-hover:scale-105" loading="lazy" />
+            <div class="p-5">
+              <p class="text-xs font-bold text-brand">0{i + 1}</p>
+              <h3 class="mt-1 text-lg">{p.title}</h3>
+              <p class="mt-2 line-clamp-3 text-sm text-muted">{p.text}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section class="section">
+    <div class="container-x text-center">
+      <p class="eyebrow justify-center">Industries we serve</p>
+      <h2 class="mt-4 text-3xl md:text-4xl">Packaging for the sectors that feed and build Bangladesh</h2>
+      <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {industries.map((name) => (
+          <div class="rounded-xl border border-gray-200 px-4 py-6 font-semibold text-navy-900">{name}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section bg-navy-900 text-white">
+    <div class="container-x grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {values.map((v) => (
+        <div class="border-l-2 border-brand pl-5">
+          <h3 class="text-xl text-white">{v.title}</h3>
+          <p class="mt-1 text-white/70">{v.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="section">
+    <div class="container-x grid items-center gap-10 md:grid-cols-[280px_1fr]">
+      <img src={founder.image} alt={founder.name} class="mx-auto w-64 rounded-xl object-cover shadow-lg md:w-full" loading="lazy" />
+      <div>
+        <p class="eyebrow">From the founder</p>
+        <blockquote class="mt-4 font-serif text-2xl italic leading-snug text-navy-900 md:text-3xl">
+          “{founder.quote}”
+        </blockquote>
+        <p class="mt-5 leading-relaxed text-muted">{founder.message[3]}</p>
+        <p class="mt-5 font-semibold text-navy-900">{founder.name}</p>
+        <p class="text-sm uppercase tracking-wider text-brand">{founder.role}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="section bg-paper">
+    <div class="container-x text-center">
+      <p class="eyebrow justify-center">Trusted by leading organisations</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        {clients.map((c) => (
+          <span class="rounded-full border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-navy-900">{c}</span>
+        ))}
+      </div>
+      <a href="/clients" class="mt-8 inline-block text-sm font-semibold text-brand hover:underline">See our clients →</a>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>
